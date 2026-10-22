@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1030" />
+    <title>戰神賽特 II 麥塊版</title>
+    <meta name="description" content="麥塊風格類 3D 復刻：5×6 消除型老虎機，倍數球、免費遊戲、覺醒之力、JP 與神秘寶箱。" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@500;700;900&display=swap" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <div id="bootSplash" role="progressbar" aria-label="遊戲載入中" aria-valuemin="0" aria-valuemax="100">
+      <div class="splash-sky"></div>
+      <div class="splash-ground"></div>
+      <div class="splash-ui">
+        <div class="splash-logo"><b>戰神賽特 II</b><span>覺醒之力・麥塊版</span></div>
+        <p class="splash-tip"></p>
+        <div class="splash-bar"><i class="splash-fill"></i></div>
+        <div class="splash-label"><span>遊戲載入中</span><span class="splash-pct">0%</span></div>
+      </div>
+    </div>
+    <div id="GameWrapper">
+      <canvas id="GameCanvas" tabindex="0" aria-label="試玩遊戲，空白鍵旋轉"></canvas>
+      <div id="hud" hidden></div>
+      <div id="popups"></div>
+      <div id="modal" hidden></div>
+      <div id="intro" hidden></div>
+    </div>
+    <noscript>請啟用 JavaScript 以開始遊戲。</noscript>
+    <script type="module">
+      import { Game } from './src/game/app.js';
+      const game = new Game();
+      game.boot().catch((e) => {
+        console.error(e);
+        const s = document.getElementById('bootSplash');
+        if (s) s.querySelector('.splash-label').innerHTML = `<span class="failed">載入失敗：${String(e.message || e)}</span> <button onclick="location.reload()">重新載入</button>`;
+      });
+    </script>
+  </body>
+</html>

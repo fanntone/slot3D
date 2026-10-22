@@ -1,0 +1,16 @@
+{
+  "name": "slot3d-storm-of-set",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "麥塊風格類 3D 復刻：戰神賽特 II 覺醒之力（5x6 消除型老虎機）",
+  "scripts": {
+    "serve": "node harness/serve.mjs",
+    "harness": "node harness/run.mjs",
+    "harness:engine": "node --test harness/engine.test.mjs",
+    "harness:e2e": "node harness/e2e.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.49.1"
+  }
+}
